@@ -1,0 +1,4 @@
+node_modules
+.env
+/build
+/commit_and_push.sh
