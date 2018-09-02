@@ -4,9 +4,26 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
+    "watch": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joonashak/full-stack-open-submissions-part4"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.12"
+  },
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0"
+  }
 }
