@@ -70,8 +70,19 @@ const favoriteBlog = {
   __v: 0,
 };
 
+// Unique blog (for insert test etc.)
+const uniqueBlog = {
+  _id: '5a422b3a1b54a606134d17fd',
+  title: 'This blog is so unique it is unreal',
+  author: 'Neve R. W. Ritten',
+  url: 'https://haveibeenpwned.com/',
+  likes: 100,
+  __v: 0,
+};
+
 module.exports = {
   listWithOneBlog,
   listWithManyBlogs,
   favoriteBlog,
+  uniqueBlog,
 };

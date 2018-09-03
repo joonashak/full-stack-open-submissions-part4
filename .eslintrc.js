@@ -3,4 +3,12 @@ module.exports = {
     "env": {
         "jest": true,
     },
+    "rules": {
+        "no-underscore-dangle": [
+            "error",
+            {
+                "allow": ["_id"],
+            },
+        ],
+    },
 };

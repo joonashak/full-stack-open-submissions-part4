@@ -22,7 +22,7 @@ server.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-server.on('close', () => mongoose.connection.close());
+server.on('close', () => mongoose.disconnect());
 
 
 module.exports = {
