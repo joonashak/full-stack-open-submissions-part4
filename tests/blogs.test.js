@@ -74,6 +74,17 @@ describe('POST /blogs', () => {
 
     expect(result.body.likes).toBe(0);
   });
+
+  test('status 400 if no title and url present', async () => {
+    const blog = uniqueBlog;
+    delete blog.title;
+    delete blog.url;
+
+    await api
+      .post(url)
+      .send(blog)
+      .expect(400);
+  });
 });
 
 
