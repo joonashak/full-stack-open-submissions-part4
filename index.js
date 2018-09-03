@@ -2,11 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const http = require('http');
 const blogsRouter = require('./controllers/blogs');
+const { mongoUrl, port } = require('./utils/config');
 
 
-const mongoUrl = 'mongodb://localhost/bloglist';
-mongoose.connect(mongoUrl);
+mongoose.connect(mongoUrl, { useNewUrlParser: true });
 
 const app = express();
 
@@ -15,7 +16,16 @@ app.use(bodyParser.json());
 
 app.use('/api', blogsRouter);
 
-const PORT = 3003;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+const server = http.createServer(app);
+
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
+
+server.on('close', () => mongoose.connection.close());
+
+
+module.exports = {
+  app,
+  server,
+};
