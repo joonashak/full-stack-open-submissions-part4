@@ -26,4 +26,11 @@ router.delete('/blogs/:id', async (request, response) => {
   response.status(204).send();
 });
 
+router.put('/blogs/:id', async (request, response) => {
+  const _id = request.params.id;
+  await Blog.updateOne({ _id }, request.body);
+  response.status(304).send();
+});
+
+
 module.exports = router;

@@ -83,7 +83,7 @@ describe('POST /blogs', () => {
 });
 
 
-describe('DELETE /blogs/:id', async () => {
+describe('DELETE /blogs/:id', () => {
   test('correct blog is deleted', async () => {
     const id = listWithManyBlogs[3]._id;
     await api.delete(`${url}/${id}`);
@@ -91,6 +91,29 @@ describe('DELETE /blogs/:id', async () => {
     const result = await api.get(url);
     const ids = result.body.map(blog => blog._id);
     expect(ids).not.toContain(id);
+  });
+});
+
+
+describe('PUT /blogs/:id', () => {
+  test('all fields are updated correctly on an existing blog', async () => {
+    const id = listWithManyBlogs[2]._id;
+
+    const updatedBlog = {
+      title: 'An updated title',
+      author: 'This has changed too',
+      url: 'http://helsinki.fi/',
+      likes: 9999,
+      __v: 0,
+    };
+
+    await api
+      .put(`${url}/${id}`)
+      .send(updatedBlog);
+
+    const result = await api.get(url);
+    updatedBlog._id = id;
+    expect(result.body).toContainEqual(updatedBlog);
   });
 });
 
