@@ -21,4 +21,9 @@ router.post('/blogs', async (request, response) => {
   return response.status(201).json(result);
 });
 
+router.delete('/blogs/:id', async (request, response) => {
+  await Blog.deleteOne({ _id: request.params.id });
+  response.status(204).send();
+});
+
 module.exports = router;

@@ -4,6 +4,7 @@ const { listWithManyBlogs, uniqueBlog } = require('./data');
 const Blog = require('../models/blog');
 
 const api = supertest(app);
+const url = '/api/blogs';
 
 
 beforeEach(async () => {
@@ -13,8 +14,6 @@ beforeEach(async () => {
 
 
 describe('GET /blogs', () => {
-  const url = '/api/blogs';
-
   test('responds with JSON', async () => {
     await api
       .get(url)
@@ -35,8 +34,6 @@ describe('GET /blogs', () => {
 
 
 describe('POST /blogs', () => {
-  const url = '/api/blogs';
-
   test('responds with JSON', async () => {
     await api
       .post(url)
@@ -82,6 +79,18 @@ describe('POST /blogs', () => {
       .post(url)
       .send(blog)
       .expect(400);
+  });
+});
+
+
+describe('DELETE /blogs/:id', async () => {
+  test('correct blog is deleted', async () => {
+    const id = listWithManyBlogs[3]._id;
+    await api.delete(`${url}/${id}`);
+
+    const result = await api.get(url);
+    const ids = result.body.map(blog => blog._id);
+    expect(ids).not.toContain(id);
   });
 });
 
