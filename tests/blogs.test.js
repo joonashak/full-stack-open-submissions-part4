@@ -63,6 +63,17 @@ describe('POST /blogs', () => {
     const result = await api.get(url);
     expect(result.body).toContainEqual(uniqueBlog);
   });
+
+  test('likes defaults to zero', async () => {
+    const blog = uniqueBlog;
+    delete blog.likes;
+
+    const result = await api
+      .post(url)
+      .send(blog);
+
+    expect(result.body.likes).toBe(0);
+  });
 });
 
 
