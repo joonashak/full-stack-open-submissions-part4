@@ -6,12 +6,10 @@ const Blog = require('../models/blog');
 const api = supertest(app);
 
 
-beforeAll(async () => {
+beforeEach(async () => {
   await Blog.deleteMany({});
   await Blog.insertMany(listWithManyBlogs);
 });
-
-afterEach(async () => Blog.deleteOne({ _id: uniqueBlog._id }));
 
 
 describe('GET /blogs', () => {
