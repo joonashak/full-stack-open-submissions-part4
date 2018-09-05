@@ -6,6 +6,7 @@ const schema = new mongoose.Schema({
   passwordHash: String,
   name: String,
   adult: { type: Boolean, default: true },
+  blogs: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Blog' }],
 });
 
 schema.statics.formatPublic = (user) => {
@@ -14,6 +15,7 @@ schema.statics.formatPublic = (user) => {
     username,
     name,
     adult,
+    blogs,
   } = user;
 
   return {
@@ -21,6 +23,7 @@ schema.statics.formatPublic = (user) => {
     username,
     name,
     adult,
+    blogs,
   };
 };
 

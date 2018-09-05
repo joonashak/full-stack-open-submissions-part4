@@ -5,6 +5,7 @@ const cors = require('cors');
 const http = require('http');
 const blogsRouter = require('./controllers/blogs');
 const usersRouter = require('./controllers/users');
+const loginRouter = require('./controllers/login');
 const { mongoUrl, port } = require('./utils/config');
 
 
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 
 app.use('/api', blogsRouter);
 app.use('/api', usersRouter);
+app.use('/api/login', loginRouter);
 
 const server = http.createServer(app);
 
